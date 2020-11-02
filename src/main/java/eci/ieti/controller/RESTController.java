@@ -53,21 +53,20 @@ public class RESTController {
     public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
         //Stores the file into MongoDB
         gridFsTemplate.store(file.getInputStream(), file.getOriginalFilename(), file.getContentType());
-        return "redirect:/files/"+file.getOriginalFilename();
+        return "files/"+file.getOriginalFilename();
     }
 
     @CrossOrigin("*")
     @PostMapping("/todo")
     public Todo createTodo(@RequestBody Todo todo) {
         //TODO implement method
-        return null;
+        return todoRepository.save(todo);
     }
 
     @CrossOrigin("*")
     @GetMapping("/todo")
     public List<Todo> getTodoList() {
-        //TODO implement method
-        return null;
+        return todoRepository.findAll();
     }
 
 }

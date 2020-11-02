@@ -32,25 +32,24 @@ export class App extends Component {
     localStorage.setItem("name", "Santiago Carrillo");
   }
   componentDidMount() {
-    /*
+    
     this.miAxios = miAxios.create({
       baseURL: "http://localhost:8080/api/",
-      timeout: 1000,
-      headers: { authorization: "Bearer " + localStorage.getItem("token") },
+      timeout: 1000
     });
 
     this.getData().then( () => {
         console.log("cargando...");
         this.setState({redirect:true});
     }
-    );*/
+    );
     
   }
 
   getData(){
     const p = new Promise((resolve,reject) =>{
         miAxios
-          .get("http://localhost:8080/api/tasks/user/test@mail.com",{headers:{ authorization: "Bearer " + localStorage.getItem("token")}})
+          .get("http://localhost:8080/api/todo")
           .then(function (response) {
             // handle success
             todos = response.data;
@@ -74,7 +73,7 @@ export class App extends Component {
     if (localStorage.getItem("isLogged") === undefined) {
       localStorage.setItem("isLogged", false);
     }
-    if (this.state.redirect){
+    if (this.state.redirect || true){
         return (
             <Router>
               <div className="App">
